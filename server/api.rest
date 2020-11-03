@@ -1,0 +1,12 @@
+###
+GET http://localhost:3000/api/comidas
+
+###
+POST http://localhost:3000/api/comidas
+Content-Type: application/json
+
+{
+    "nombre": "Arroz",
+    "descripcion": "Granos de arroz",
+    "precio": "1000"
+}
