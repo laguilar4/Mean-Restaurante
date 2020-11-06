@@ -10,8 +10,19 @@ comidaCtrl.createComida = async (req,res) => {
     await newComida.save();
     res.send({message: 'Comida creada'});
 };
-comidaCtrl.getComida = (req,res) => {};
-comidaCtrl.editComidas = (req,res) => {};
-comidaCtrl.deleteComidas = (req,res) => {};
+comidaCtrl.getComida = async (req,res) => {
+    
+    const comida = await Comida.findById(req.params.id);
+    res.send(comida);
+    
+};
+comidaCtrl.editComidas = async (req,res) => {
+    await Comida.findByIdAndUpdate(req.params.id, req.body);
+    res.json({status: 'Comida actualizada'});
+};
+comidaCtrl.deleteComidas = async (req,res) => {
+    await Comida.findByIdAndDelete(req.params.id);
+    res.json({status: 'Comida eliminada'});
+};
 
 module.exports = comidaCtrl;

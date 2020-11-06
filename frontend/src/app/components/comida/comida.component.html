@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>Menu de Comida</h1>
+                <form #comidaForm="ngForm" (ngSubmit)="addComida(comidaForm)">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre de la comida" [(ngModel)]="comidaService.selectedComida.nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <input type="text" class="form-control" name="descripcion" placeholder="Ingresa la descripcion de la comida" [(ngModel)]="comidaService.selectedComida.descripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio</label>
+                        <input type="number" class="form-control" name="precio" placeholder="Ingresa el precio de la comida" [(ngModel)]="comidaService.selectedComida.precio">
+                    </div>
+                    <button class="btn btn-secondary mr-2">
+                        Clean
+                    </button>
+                    <button class="btn btn-primary mr-2">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let comida of comidaService.comidas">
+                <td>{{comida.nombre}}</td>
+                <td>{{comida.descripcion}}</td>
+                <td>{{comida.precio}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteComida(comida._id)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+               </tr>
+             
+            </tbody>
+        </table>
+
+    </div>
+</div>

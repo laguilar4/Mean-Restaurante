@@ -6,7 +6,23 @@ POST http://localhost:3000/api/comidas
 Content-Type: application/json
 
 {
-    "nombre": "Arroz",
-    "descripcion": "Granos de arroz",
-    "precio": "1000"
+    "nombre": "Almuerzo de carne",
+    "descripcion": "Arroz con carne",
+    "precio": "9000"
+}
+
+###
+GET http://localhost:3000/api/comidas/5fa17dbde13cea58b4490869
+
+###
+DELETE http://localhost:3000/api/comidas/5fa1d6c351aa6634483fa417
+
+###
+PUT http://localhost:3000/api/comidas/5fa1d6c351aa6634483fa417
+Content-Type: application/json
+
+{
+    "nombre": "Almuerzo de carne",
+    "descripcion": "Arroz con carne",
+    "precio": "9000"
 }
