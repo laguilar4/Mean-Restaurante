@@ -24,6 +24,9 @@ export class ComidaService {
   createComida(comida: Comida){
     return this.http.post(this.URL_API, comida);
   }
+  updateComida(comida: Comida){
+    return this.http.put(`${this.URL_API}/${comida._id}`,comida);
+  }
   deleteComida(_id: String){
     return this.http.delete(`${this.URL_API}/${_id}`);
   }

@@ -1,0 +1,12 @@
+footer {
+    background-color: royalblue;
+    position:fixed;
+    bottom: 0px;
+    width: 100%;
+    font-size:medium;
+    text-align: center;
+    }
+
+p { 
+    margin: auto;
+}

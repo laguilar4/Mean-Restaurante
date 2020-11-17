@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ComidaService} from '../../services/comida.service';
 import {NgForm} from '@angular/forms';
-
+import {Comida} from '../../models/comida';
 
 @Component({
   selector: 'app-comida',
@@ -16,6 +16,10 @@ export class ComidaComponent implements OnInit {
    this.getComidas();
   }
 
+  resetForm(form: NgForm){
+    form.reset();
+  }
+
   getComidas(){
     this.comidaService.getComidas().subscribe(
       res => {
@@ -25,13 +29,20 @@ export class ComidaComponent implements OnInit {
     );
   }
   addComida(form: NgForm){
-    this.comidaService.createComida(form.value).subscribe(
-      res => {
-        this.getComidas();
-        form.reset();
-      },
-      err => console.error(err)
-    );
+    if(form.value._id){
+      this.comidaService.updateComida(form.value).subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      );
+    }else{
+      this.comidaService.createComida(form.value).subscribe(
+        res => {
+          this.getComidas();
+          form.reset();
+        },
+        err => console.error(err)
+      );
+    }
   }
   deleteComida(id: String){
    if(confirm('¿Estas seguro de querer eliminarlo?')){
@@ -40,5 +51,9 @@ export class ComidaComponent implements OnInit {
        (err) => console.error(err)
        );
    }
+  }
+
+  editComida(comida: Comida){
+    this.comidaService.selectedComida = comida;
   }
 }

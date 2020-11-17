@@ -4,6 +4,7 @@
             <div class="card-body">
                 <h1>Menu de Comida</h1>
                 <form #comidaForm="ngForm" (ngSubmit)="addComida(comidaForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="comidaService.selectedComida._id">
                     <div class="form-group">
                         <label>Nombre</label>
                         <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre de la comida" [(ngModel)]="comidaService.selectedComida.nombre">
@@ -16,7 +17,7 @@
                         <label>Precio</label>
                         <input type="number" class="form-control" name="precio" placeholder="Ingresa el precio de la comida" [(ngModel)]="comidaService.selectedComida.precio">
                     </div>
-                    <button class="btn btn-secondary mr-2">
+                    <button class="btn btn-secondary mr-2" (click)= "resetForm(comidaForm)">
                         Clean
                     </button>
                     <button class="btn btn-primary mr-2">
@@ -42,7 +43,7 @@
                 <td>{{comida.descripcion}}</td>
                 <td>{{comida.precio}}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm">
+                    <button class="btn btn-primary btn-sm" (click)="editComida(comida)">
                         <i class="material-icons">edit</i>
                     </button>
                     <button class="btn btn-danger btn-sm" (click)="deleteComida(comida._id)">
